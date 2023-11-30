@@ -1,0 +1,43 @@
+---
+- name: Ensure git is installed
+  apt:
+    name: git
+    state: present
+  become: yes
+
+- name: Ensure neovim is installed
+  apt:
+    name: neovim
+    update_cache: yes
+  become: yes
+
+- name: Ensure .config/nvim directory exists
+  file:
+    path: ~/.config/nvim
+    state: directory
+  become: no
+
+- name: Ensure .config/nvim/autoload directory exists
+  file:
+    path: ~/.config/nvim/autoload
+    state: directory
+  become: no
+
+- name: Clone neovim config
+  git:
+    repo: https://github.com/rfmind/neovimconfig.git
+    dest: ~/Code/neovimconfig
+  become: no
+
+- name: Copy neovim init file
+  copy:
+    src: ~/Code/neovimconfig/init.vim
+    dest: ~/.config/nvim/init.vim
+  become: no
+
+- name: Copy neovim plug file
+  copy:
+    src: ~/Code/neovimconfig/autoload/plug.vim
+    dest: ~/.config/nvim/autoload/plug.vim
+  become: no
+

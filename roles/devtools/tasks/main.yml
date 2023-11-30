@@ -1,0 +1,25 @@
+---
+- name: Ensure tools are installed
+  apt:
+    name: "{{ tools_to_install }}"
+    state: present
+  become: yes
+
+- name: Ensure git setup
+  include_tasks: git.yml
+
+- name: Ensure rust setup
+  include_tasks: rust.yml
+
+- name: Ensure dotnet setup
+  include_tasks: dotnetcore.yml
+
+- name: Ensure zsh setup
+  include_tasks: zsh.yml
+
+- name: Ensure neovim setup
+  include_tasks: neovim.yml
+
+- name: Ensure fira setup
+  include_tasks: fira.yml
+

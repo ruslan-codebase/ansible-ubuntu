@@ -1,0 +1,23 @@
+---
+- name: Ensure zsh is installed
+  apt:
+    name: "zsh"
+    state: present
+  become: yes
+
+- name: Clone oh-my-zsh
+  git:
+    repo: git://github.com/robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+  become: no
+
+- name: Create new ~/.zshrc
+  copy:
+    src: ~/.oh-my-zsh/templates/zshrc.zsh-template
+    dest: ~/.zshrc
+  become: no
+
+- name: Change shell
+  command: chsh -s /bin/zsh
+  become: yes
+

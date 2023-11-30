@@ -1,0 +1,17 @@
+---
+- name: Ensure dependencies are installed
+  apt:
+    name: libappindicator1
+    state: present
+  become: yes
+
+- name: Download vivaldi deb package
+  get_url:
+    url: https://downloads.vivaldi.com/stable/vivaldi-stable_1.6.689.46-1_amd64.deb
+    dest: /usr/local/src/vivaldi-stable_1.6.689.46-1_amd64.deb
+  become: yes
+
+- name: Install deb package
+  command: dpkg -i /usr/local/src/vivaldi-stable_1.6.689.46-1_amd64.deb
+  become: yes
+

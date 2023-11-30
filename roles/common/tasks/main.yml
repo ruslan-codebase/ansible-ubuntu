@@ -1,0 +1,43 @@
+---
+- name: Ensure Code dir exists
+  file:
+    path: ~/Code
+    state: directory
+  become: no
+
+- name: Ensure Notes dir exists
+  file:
+    path: ~/Notes
+    state: directory
+  become: no
+
+- name: Ensure Wallpapers dir exists
+  file:
+    path: ~/Pictures/Wallpapers
+    state: directory
+  become: no
+
+- name: Ensure Archives dir exists
+  file:
+    path: ~/Archives
+    state: directory
+  become: no
+
+- name: Ensure Books dir exists
+  file:
+    path: ~/Books
+    state: directory
+  become: no
+
+- name: Ensure aptitude is installed
+  apt:
+    name: "aptitude"
+    state: latest
+  become: yes
+
+- name: Ensure up-to-date system
+  apt:
+    update_cache: yes
+    upgrade: safe
+  become: yes
+

@@ -1,0 +1,9 @@
+---
+- name: Ensure pip and tk are installed
+  apt:
+    name:
+      - python3-pip
+      - python3-tk
+    state: present
+    update_cache: yes
+  become: yes

@@ -1,0 +1,7 @@
+---
+- name: Ensure ncurses dev libs are installed
+  apt:
+    name: libncursesw5-dev
+    state: present
+  become: yes
+

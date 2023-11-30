@@ -1,0 +1,30 @@
+---
+- name: Ensure HTTP for apt is installed
+  apt:
+    name: apt-transport-https
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Ensure ansible-ubuntu/tmp directory exists
+  file:
+    path: ~/Code/ansible-ubuntu/tmp
+    state: directory
+  become: no
+
+- name: Download Microsoft product repository
+  get_url:
+    url: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
+    dest: /home/ruslan/Code/ansible-ubuntu/tmp/packages-microsoft-prod.deb
+  become: no
+
+- name: Install Microsoft product repository
+  apt: deb=/home/ruslan/Code/ansible-ubuntu/tmp/packages-microsoft-prod.deb
+  become: yes
+
+- name: Install dotnet 5 SDK
+  apt:
+    name: dotnet-sdk-5.0
+    state: present
+    update_cache: yes
+  become: yes

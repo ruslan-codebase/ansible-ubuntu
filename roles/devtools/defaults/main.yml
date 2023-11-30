@@ -1,0 +1,16 @@
+---
+tools_to_install:
+  - git
+  - docker
+  - docker-compose
+  - vagrant
+  - virtualbox
+  - curl
+  - default-jdk
+  - tree
+  - cloc
+
+sublime_dependencies:
+  - apt-transport-https
+  - ca-certificates
+  - software-properties-common

@@ -1,0 +1,33 @@
+---
+- name: Download the golang tarball
+  get_url:
+    url: https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz
+    dest: /usr/local/src/go1.7.4.linux-amd64.tar.gz
+    checksum: sha256:47fda42e46b4c3ec93fa5d4d4cc6a748aa3f9411a2a2b7e08e3a6d80d753ec8b
+  become: yes
+
+- name: Extract tarball
+  unarchive:
+    src: /usr/local/src/go1.7.4.linux-amd64.tar.gz
+    dest: /usr/local
+    copy: no
+  become: yes
+
+- name: Clone gopathsetup
+  git:
+    repo: https://ruslan_filimonov@bitbucket.org/ruslan_filimonov/gopathsetup
+    dest: ~/Code/gopathsetup
+  become: no
+
+- name: Add go bin directory to path for all users
+  copy:
+    src: ~/Code/gopathsetup/go-bin.sh
+    dest: /etc/profile.d
+  become: yes
+
+- name: Set gopath for all users
+  copy:
+    src: ~/Code/gopathsetup/go-path.sh
+    dest: /etc/profile.d
+  become: yes
+

@@ -1,0 +1,6 @@
+---
+- name: Ensure applications are installed
+  apt:
+    name: "{{apps_to_install}}"
+    state: latest
+  become: yes

@@ -1,0 +1,8 @@
+---
+apps_to_install:
+  - vlc
+  - htop
+  - winff
+  - youtube-dl
+  - inkscape
+  - gimp

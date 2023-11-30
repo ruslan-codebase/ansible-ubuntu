@@ -1,0 +1,25 @@
+---
+- name: Ensure ruby-full is installed (no rbenv atm)
+  apt:
+    name:
+      - ruby-full
+      - tcl
+    state: present
+  become: yes
+
+- name: Ensure MRuby installation
+  apt:
+    name:
+      - mruby
+      - libmruby-dev
+
+- name: Ensure Ruby simple2d installation
+  apt:
+    name:
+      - libsdl2-dev
+      - libsdl2-image-dev
+      - libsdl2-mixer-dev
+      - libsdl2-ttf-dev
+    state: present
+  become: yes
+
